@@ -59,11 +59,26 @@ for (let i = 1; i <= 3; i++) {
 wateringcan = $("#wateringcan")
 wateringcan_tilt = false
 
-wateringcan.mousemove(function() {
-    console.log("Hi, this is Jeff!")
-    wateringcan.animate({
-        transform: 'rotate(35deg)'
-    })
+wateringcan.hover(function() {
+    let degrees;
+    if(wateringcan_tilt){
+        degrees =1;
+    }else{
+        degrees=-1;
+    }
+    $("#wateringcan").animate(
+        { deg: 30*degrees },
+        {
+          duration: 1200,
+          step: function(now) {
+            $(this).css({ transform: 'rotate(' + now + 'deg)' });
+          },
+          done: function(){
+              wateringcan_tilt = !wateringcan_tilt
+          }
+        }
+      );
+      
 })
 
 
