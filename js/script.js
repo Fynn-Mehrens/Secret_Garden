@@ -11,6 +11,10 @@ basket.css({
     'z-index': 14
 })
 
+$("#butterfly").css({
+    'z-index': 14
+})
+
 $(".apple").css({
     'z-index': 13
 })
@@ -56,6 +60,7 @@ for (let i = 1; i <= 3; i++) {
     })
 }
 
+// Tilting the watercan on hover
 wateringcan = $("#wateringcan")
 wateringcan_tilt = false
 
@@ -78,8 +83,30 @@ wateringcan.hover(function() {
           }
         }
       );
-      
+
 })
 
+// Moving the butterfly across the screen
+function animateButterfly () {
+    $("#butterfly").animate({
+        top: Math.floor(Math.random() * ($(window).height() - $("#butterfly").height())),
+        left: Math.floor(Math.random() * ($(window).width() - $("#butterfly").width()))
+    }, 3000, function() {
+        animateButterfly()
+    })
+}
+
+animateButterfly()
+
+//Hovering the butterfly, making it move to a random position
+$("#butterfly").hover(function() {
+    $("#butterfly").stop()
+    $("#butterfly").animate({
+        top: Math.floor(Math.random() * ($(window).height() - $("#butterfly").height())),
+        left: Math.floor(Math.random() * ($(window).width() - $("#butterfly").width()))
+    }, 1000, function() {
+        animateButterfly()
+    })
+})
 
 
